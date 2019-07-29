@@ -398,12 +398,16 @@ function renderBasicCard(data,parent){
     });
 
     var linkDiv = $('<div/>');
-    var link = $("<a>");
-    link.attr('href',(data['buttons'][0])['openUriAction']['uri']);
-    link.attr("title",(data['buttons'][0])['title']);
-    link.text((data['buttons'][0])['title']);
-    link.addClass("card-link");
-    linkDiv.append(link);
+    var buttons_array = data['buttons'];
+    if (typeof buttons_array !== 'undefined' && buttons_array.length > 0) {
+        // the array is defined and has at least one element
+        var link = $("<a>");
+        link.attr('href',(data['buttons'][0])['openUriAction']['uri']);
+        link.attr("title",(data['buttons'][0])['title']);
+        link.text((data['buttons'][0])['title']);
+        link.addClass("card-link");
+        linkDiv.append(link);
+    }
 
     cardDiv.append(img);
     cardBodyDiv.append(cardTitleContainerDiv);
